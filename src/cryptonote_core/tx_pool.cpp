@@ -996,7 +996,7 @@ namespace cryptonote
     LockedTXN lock(m_blockchain);
 
     auto sorted_it = m_txs_by_fee_and_receive_time.begin();
-    while (sorted_it != m_txs_by_fee_and_receive_time.end())
+    while (sorted_it != m_txs_by_fee_and_receive_time.end() && bl.tx_hashes.size() <= 120)
     {
       txpool_tx_meta_t meta = m_blockchain.get_txpool_tx_meta(sorted_it->second);
       LOG_PRINT_L2("Considering " << sorted_it->second << ", size " << meta.blob_size << ", current block size " << total_size << "/" << max_total_size << ", current coinbase " << print_money(best_coinbase));
